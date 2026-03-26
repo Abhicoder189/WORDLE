@@ -8,7 +8,7 @@ import mongoose from "mongoose";
 dotenv.config()
 const app = express()
 app.use(cors({
-  origin: "https://your-wordle-name.vercel.app" 
+  origin: "https://wordle-theta-sage.vercel.app/" 
 }));;
 app.use(express.json())
 
