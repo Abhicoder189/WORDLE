@@ -6,12 +6,13 @@ import scoreRoutes from "./routes/scoreRoutes.js";
 
 import mongoose from "mongoose";
 dotenv.config()
+const app = express()
 app.use(cors({
   origin: "https://wordle-guess-game.vercel.app", // Use your EXACT Vercel URL here
   methods: ["GET", "POST"],
   credentials: true
 }));
-const app = express()
+
 
 app.use(express.json())
 
