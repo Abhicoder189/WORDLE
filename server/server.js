@@ -7,7 +7,9 @@ import scoreRoutes from "./routes/scoreRoutes.js";
 import mongoose from "mongoose";
 dotenv.config()
 const app = express()
-app.use(cors());
+app.use(cors({
+  origin: "https://your-wordle-name.vercel.app" 
+}));;
 app.use(express.json())
 
 const MONGO_URI = process.env.MONGO_URI
