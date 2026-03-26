@@ -1,5 +1,6 @@
 import axios from "axios"
-const API_URL = import.meta.env.VITE_API_URL || "https://wordle-api-abhi.onrender.com";
+const rawApiUrl = import.meta.env.VITE_API_URL || "https://wordle-api-abhi.onrender.com"
+const API_URL = rawApiUrl.replace(/\/+$/, "")
 const fetchWord =async () =>{
     const response = await axios.get(`${API_URL}/api/game`)
     return response.data

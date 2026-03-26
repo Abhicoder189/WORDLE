@@ -8,15 +8,37 @@ import mongoose from "mongoose";
 dotenv.config()
 const app = express()
 
-const allowedOrigins = [
+const envOrigins = [
   process.env.CLIENT_URL,
+  process.env.CLIENT_URLS
+]
+  .filter(Boolean)
+  .flatMap((value) => value.split(","))
+  .map((value) => value.trim())
+  .filter(Boolean)
+
+const allowedOrigins = new Set([
+  ...envOrigins,
   "https://wordle-guess-game.vercel.app",
   "http://localhost:5173"
-].filter(Boolean)
+])
+
+const isAllowedOrigin = (origin) => {
+  if (!origin || allowedOrigins.has(origin)) {
+    return true
+  }
+
+  try {
+    const url = new URL(origin)
+    return url.hostname.endsWith(".vercel.app")
+  } catch {
+    return false
+  }
+}
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (isAllowedOrigin(origin)) {
       return callback(null, true)
     }
     return callback(new Error("Not allowed by CORS"))
