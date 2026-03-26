@@ -8,3 +8,60 @@
   min-width: 200px;
   text-align: center;
 }
+.keyboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+  user-select: none; /* Prevents highlighting text while tapping fast */
+}
+
+.current-guess-display {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 5px;
+  height: 3rem;
+  text-transform: uppercase;
+}
+
+.keyboard-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  touch-action: manipulation; /* Improves tap response on mobile */
+}
+
+.key-btn {
+  height: 58px;
+  flex: 1; /* Makes keys grow to fill the row */
+  border-radius: 4px;
+  border: none;
+  background-color: #d3d6da;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  -webkit-tap-highlight-color: transparent; /* Removes blue flash on mobile */
+}
+
+.key-btn:active {
+  background-color: #bbb;
+}
+
+/* Make Enter and Backspace wider than letter keys */
+.wide-key {
+  flex: 1.5;
+  font-size: 0.8rem;
+}
