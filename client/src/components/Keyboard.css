@@ -1,0 +1,10 @@
+.current-guess {
+  height: 40px;
+  font-size: 1.5rem;
+  letter-spacing: 10px;
+  color: #818384;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--grey);
+  min-width: 200px;
+  text-align: center;
+}
