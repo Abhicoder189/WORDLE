@@ -42,7 +42,7 @@ const handleSubmit = async () => {
 
   // 3. Create the NEW arrays locally
   const nextGuessList = [...guessList, currentGuess];
-  const nextColorResults = [...colorResults, data.color];
+  const nextColorResults = [...colorResults, data.colorResults];
 
   // 4. Update states
   setGuessList(nextGuessList);
