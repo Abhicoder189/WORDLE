@@ -74,7 +74,7 @@ const handleSubmit = async () => {
 
     <Grid guessList={guessList} colorResults={colorResults} />
     <Keyboard currentGuess={currentGuess} onKeyPress={handleKeyPress} />
-    <ScoreBoard scores={scores} />
+    {/* <ScoreBoard scores={scores} /> */}
   </div>
 );
   
