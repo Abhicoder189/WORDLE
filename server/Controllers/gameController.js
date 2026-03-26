@@ -9,28 +9,28 @@ export const getWord = async (req, res) => {
 
 }
 export const checkGuess = (req,res)=>{
-    const {word, guess} = req.body
-    word = word.toUpperCase();
-  guess = guess.toUpperCase();
-    let color= ["grey","grey","grey","grey","grey"]
-    for(let i =0;i<color.length;i++){
-        if(word[i] == guess[i]){
-            color[i]="green"
+    let { word, guess } = req.body
+
+    if (!word || !guess) {
+        return res.status(400).json({ message: "word and guess are required" })
+    }
+
+    word = String(word).toUpperCase()
+    guess = String(guess).toUpperCase()
+
+    const colorResults = ["grey", "grey", "grey", "grey", "grey"]
+    for (let i = 0; i < colorResults.length; i++) {
+        if (word[i] === guess[i]) {
+            colorResults[i] = "green"
         }
     }
-    for(let i =0;i<color.length;i++){
-        if(word.includes(guess[i]) && color[i]!="green"){
-            color[i]="yellow"
+    for (let i = 0; i < colorResults.length; i++) {
+        if (word.includes(guess[i]) && colorResults[i] !== "green") {
+            colorResults[i] = "yellow"
         }
-
     }
-    let isWon = true
-    for(let i =0;i<color.length;i++){
-       if(color[i]== "yellow" || color[i] =="grey"){
-        isWon = false
-       }
 
-    }
-  
-    res.json({isWon,color})
+    const isWon = colorResults.every((c) => c === "green")
+
+    res.json({ isWon, colorResults })
 }

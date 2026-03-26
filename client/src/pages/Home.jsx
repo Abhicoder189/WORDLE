@@ -40,25 +40,29 @@ const handleSubmit = async () => {
   // 2. Prevent submitting short words
   if (currentGuess.length !== 5) return;
 
-  const data = await submitGuess(currentGuess, word);
+  try {
+    const data = await submitGuess(currentGuess, word);
+    const submittedColors = data.colorResults || data.color;
 
-  // 3. Create the NEW arrays locally
-  const nextGuessList = [...guessList, currentGuess];
-  const nextColorResults = [...colorResults, data.colorResults];
+    if (!Array.isArray(submittedColors)) return;
 
-  // 4. Update states
-  setGuessList(nextGuessList);
-  setColorResults(nextColorResults);
-  setIsWon(data.isWon);
-  setCurrentGuess("");
+    // 3. Create the NEW arrays locally
+    const nextGuessList = [...guessList, currentGuess];
+    const nextColorResults = [...colorResults, submittedColors];
 
-  // 5. Use the LOCAL variable 'nextGuessList' for the check
-  // Length 6 means the player just finished their 6th attempt
-  if (data.isWon || nextGuessList.length === 6) {
-    setIsgameOver(true);
-    
-   
-    
+    // 4. Update states
+    setGuessList(nextGuessList);
+    setColorResults(nextColorResults);
+    setIsWon(Boolean(data.isWon));
+    setCurrentGuess("");
+
+    // 5. Use the LOCAL variable 'nextGuessList' for the check
+    // Length 6 means the player just finished their 6th attempt
+    if (data.isWon || nextGuessList.length === 6) {
+      setIsgameOver(true);
+    }
+  } catch (error) {
+    console.error("Submit guess failed", error);
   }
 };
   
