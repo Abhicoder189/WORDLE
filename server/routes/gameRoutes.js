@@ -1,4 +1,4 @@
-import {getWord, checkGuess} from "../controllers/gameController.js"
+import {getWord, checkGuess} from "../Controllers/gameController.js"
 import express from "express"
 const router = express.Router()
 router.get("/", getWord)

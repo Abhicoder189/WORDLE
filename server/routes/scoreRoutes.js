@@ -1,4 +1,4 @@
-import {getScores, saveScore} from "../controllers/scoreController.js"
+import {getScores, saveScore} from "../Controllers/scoreController.js"
 import express from "express"
 const router = express.Router()
 router.get("/", getScores)

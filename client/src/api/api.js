@@ -1,4 +1,5 @@
 import axios from "axios"
+
 const fetchWord =async () =>{
     const response = await axios.get("http://localhost:8000/api/game")
     return response.data
