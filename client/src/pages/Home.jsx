@@ -69,11 +69,13 @@ const handleSubmit = async () => {
     return (
   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
     {/* Check: Are these states actually booleans? */}
+    <h1>Wordle</h1>
     {isWon && <h1 style={{color: 'green'}}>You Won!</h1>}
     {isGameOver && !isWon && <h1 style={{color: 'red'}}>Game Over!</h1>}
 
-    <Grid guessList={guessList} colorResults={colorResults} />
+    <Grid  guessList={guessList} colorResults={colorResults} />
     <Keyboard currentGuess={currentGuess} onKeyPress={handleKeyPress} />
+    
     {/* <ScoreBoard scores={scores} /> */}
   </div>
 );
