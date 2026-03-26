@@ -14,10 +14,12 @@ const Home = () => {
   const [isGameOver, setIsgameOver] = useState(false);
   useEffect(() => {
     const getWord = async () => {
-      const data = await fetchWord();
-      setWord(data);
-    };
-    getWord();
+    const data = await fetchWord();
+    // Ensure we are saving a STRING, not an object
+    const actualWord = typeof data === 'object' ? data.word : data;
+    setWord(actualWord);
+  };
+  getWord();
   }, []);
   const handleKeyPress = (key) => {
   if (key === "Backspace") {
