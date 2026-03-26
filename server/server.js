@@ -12,7 +12,20 @@ app.use(cors({
   methods: ["GET", "POST"],
   credentials: true
 }));
+app.use((req, res, next) => {
+  // Replace the '*' with your actual Vercel URL later for better security
+  res.header("Access-Control-Allow-Origin", "*"); 
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  
+  // 2. IMPORTANT: Handle the 'OPTIONS' preflight check
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204); 
+  }
+  next();
+});
 
+app.use(express.json());
 
 app.use(express.json())
 
